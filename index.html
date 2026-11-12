@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KonnektaADS | Marketplace de Conexión Directa</title>
+    <style>
+        :root {
+            --bg-color: #000000;
+            --card-bg: #0a0a0a;
+            --border-color: #222222;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --accent: #3b82f6;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+        }
+        header h1 {
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+        main {
+            flex: 1;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        .section p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+        }
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        nav a.active {
+            color: var(--accent);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🖤 KONNEKTA-ADS</h1>
+    </header>
+
+    <main>
+        <div class="section">
+            <h2>📢 Sección de Anuncios</h2>
+            <p>Conecta de forma directa con los mejores profesionales locales sin intermediarios.</p>
+        </div>
+
+        <div class="section">
+            <h2>🤝 Sección de Referidos</h2>
+            <p>Comparte tu enlace exclusivo, invita a otros empresarios y consigue ventajas en la plataforma.</p>
+        </div>
+
+        <div class="section">
+            <h2>👤 Mi Perfil</h2>
+            <p>Gestiona tus datos, visualiza tus conexiones activas y mantén tu cuenta verificada con Supabase.</p>
+        </div>
+    </main>
+
+    <nav>
+        <a href="#" class="active">Principal</a>
+        <a href="#">Anuncios</a>
+        <a href="#">Referidos</a>
+        <a href="#">Perfil</a>
+    </nav>
+
+</body>
+</html>
