@@ -3,76 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KonnektaADS | Marketplace de Conexión Directa</title>
+    <title>KonnektaADS | Plataforma Web</title>
     <style>
         :root {
             --bg-color: #000000;
             --card-bg: #0a0a0a;
             --border-color: #222222;
             --text-primary: #ffffff;
-            --text-secondary: #a1a1aa;
-            --accent: #3b82f6;
+            --text-secondary: #888888;
         }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        }
+
         body {
             background-color: var(--bg-color);
             color: var(--text-primary);
-            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            padding-bottom: 90px; /* Espacio para que la barra inferior no tape el contenido */
             display: flex;
             flex-direction: column;
+            align-items: center;
         }
+
         header {
-            padding: 20px;
-            border-bottom: 1px solid var(--border-color);
             text-align: center;
+            margin-bottom: 25px;
+            margin-top: 10px;
         }
-        header h1 {
-            font-size: 1.5rem;
-            letter-spacing: -0.5px;
+
+        h1 {
+            font-size: 20px;
+            letter-spacing: 1px;
+            margin: 0;
+            font-weight: 700;
         }
-        main {
-            flex: 1;
-            padding: 20px;
-            max-width: 600px;
-            margin: 0 auto;
+
+        .container {
             width: 100%;
+            max-width: 480px;
         }
-        .section {
+
+        /* Secciones de contenido */
+        .view-section {
+            display: none;
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 20px;
-            margin-bottom: 20px;
+            width: 100%;
+            box-sizing: border-box;
+            animation: fadeIn 0.2s ease;
         }
-        .section h2 {
-            font-size: 1.1rem;
+
+        .view-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .view-section h2 {
+            font-size: 18px;
+            margin-top: 0;
             margin-bottom: 10px;
-            color: var(--text-primary);
         }
-        .section p {
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
             color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.4;
+            margin-bottom: 5px;
         }
-        nav {
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            background-color: #000;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px;
+            color: #fff;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .action-btn {
+            background-color: #fff;
+            color: #000;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* Barra de navegación inferior fija */
+        nav.bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #050505;
+            border-top: 1px solid var(--border-color);
             display: flex;
             justify-content: space-around;
-            padding: 15px;
-            border-top: 1px solid var(--border-color);
-            background-color: var(--card-bg);
+            padding: 10px 0;
+            box-sizing: border-box;
+            z-index: 1000;
         }
-        nav a {
+
+        .nav-item {
+            background: none;
+            border: none;
             color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.85rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            flex: 1;
+            transition: color 0.2s ease;
         }
-        nav a.active {
-            color: var(--accent);
+
+        .nav-item .icon {
+            font-size: 20px;
+        }
+
+        .nav-item.active {
+            color: var(--text-primary);
             font-weight: 600;
         }
     </style>
@@ -83,29 +149,77 @@
         <h1>🖤 KONNEKTA-ADS</h1>
     </header>
 
-    <main>
-        <div class="section">
+    <div class="container">
+        <!-- Vista: Anuncios -->
+        <div id="ads-view" class="view-section active">
             <h2>📢 Sección de Anuncios</h2>
-            <p>Conecta de forma directa con los mejores profesionales locales sin intermediarios.</p>
+            <p style="color: var(--text-secondary); margin-bottom: 15px; font-size: 14px;">Conecta de forma directa con los mejores profesionales locales sin intermediarios.</p>
+            <div class="form-group">
+                <label>Título del servicio o anuncio</label>
+                <input type="text" placeholder="Ej: Servicios de imagen y branding">
+            </div>
+            <div class="form-group">
+                <label>Descripción</label>
+                <textarea rows="3" placeholder="Detalla lo que ofreces..."></textarea>
+            </div>
+            <button class="action-btn" onclick="alert('Anuncio publicado correctamente')">Publicar Anuncio</button>
         </div>
 
-        <div class="section">
+        <!-- Vista: Referidos -->
+        <div id="referrals-view" class="view-section">
             <h2>🤝 Sección de Referidos</h2>
-            <p>Comparte tu enlace exclusivo, invita a otros empresarios y consigue ventajas en la plataforma.</p>
+            <p style="color: var(--text-secondary); margin-bottom: 15px; font-size: 14px;">Comparte tu enlace exclusivo, invita a otros empresarios y consigue ventajas.</p>
+            <div class="form-group">
+                <label>Tu enlace de invitación único</label>
+                <input type="text" value="https://alexico369.github.io/konnekta-ads-/?ref=alex" readonly>
+            </div>
+            <button class="action-btn" onclick="alert('Enlace copiado al portapapeles')">Copiar Enlace</button>
         </div>
 
-        <div class="section">
+        <!-- Vista: Perfil -->
+        <div id="profile-view" class="view-section">
             <h2>👤 Mi Perfil</h2>
-            <p>Gestiona tus datos, visualiza tus conexiones activas y mantén tu cuenta verificada con Supabase.</p>
+            <p style="color: var(--text-secondary); margin-bottom: 15px; font-size: 14px;">Gestiona tus datos y mantén tu cuenta verificada con Supabase.</p>
+            <div class="form-group">
+                <label>Nombre de usuario / Empresa</label>
+                <input type="text" value="Alonso Privee">
+            </div>
+            <div class="form-group">
+                <label>Estado de Conexión</label>
+                <input type="text" value="Verificado (Supabase Active)" readonly>
+            </div>
+            <button class="action-btn" onclick="alert('Cambios guardados')">Guardar Cambios</button>
         </div>
-    </main>
+    </div>
 
-    <nav>
-        <a href="#" class="active">Principal</a>
-        <a href="#">Anuncios</a>
-        <a href="#">Referidos</a>
-        <a href="#">Perfil</a>
+    <!-- Barra de Navegación Inferior -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" onclick="switchTab('ads-view', this)">
+            <span class="icon">📢</span>
+            <span>Anuncios</span>
+        </button>
+        <button class="nav-item" onclick="switchTab('referrals-view', this)">
+            <span class="icon">🤝</span>
+            <span>Referidos</span>
+        </button>
+        <button class="nav-item" onclick="switchTab('profile-view', this)">
+            <span class="icon">👤</span>
+            <span>Perfil</span>
+        </button>
     </nav>
+
+    <script>
+        function switchTab(viewId, element) {
+            // Ocultar todas las vistas
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            // Mostrar la seleccionada
+            document.getElementById(viewId).classList.add('active');
+
+            // Quitar clase activa de los botones de navegación y ponérsela al pulsado
+            document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+        }
+    </script>
 
 </body>
 </html>
